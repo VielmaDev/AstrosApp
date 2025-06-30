@@ -6,7 +6,7 @@
 
 <section>
 <div class="container">
-    <img src="https://github.com/user-attachments/assets/7b45e29e-cc85-454f-b4c8-fa73308f3158">
+    <img src="https://github.com/user-attachments/assets/36a3ffb3-8320-43b8-b2f8-b1cdbba06b78">
 </div>   
 <div class="container">
     <p>Astronews es una app que proporciona noticias publicadas por la agencia espacial NASA, extraída de la API APOD (Astronomy Picture of Day).</p>
@@ -29,9 +29,6 @@
 <div class="container">
     <h4>DB API:</h4>
         <li>APOD (NASA_API)</li>
-</div>
-<div class="container">
-    <h4>URL API:</h4>
         <li>Registro y solicitud de Api_key en https://api.nasa.gov/</li>
 </div>
 
