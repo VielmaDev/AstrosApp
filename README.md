@@ -17,8 +17,14 @@
 </div>
 
 <div class="container">
-    <h4>Framework:</h4>
-        <li>Flet</li>
+    <h4>Library:</h4>
+        <li>pip install virtualenv</li>
+        <li>pip install flet</li>
+</div>
+
+<div class="container">
+    <h4>Virtual environment:</h4>
+        <li>\venv\Scripts\activate</li>
 </div>
 <div class="container">
     <h4>DB API:</h4>
@@ -41,8 +47,7 @@
 </div>
 
 <div class="container">
-    <li>En la terminal de VSC ejecutar el comando: <b>python manage.py runserver </li> 
-    <li>Ingresar a Google Chrome con la dirección Ip: http://127.0.0.1:8000 </li>
+    <li>En la terminal de VSC ejecutar el comando: <b>flet run main.py</li> 
 </div>
 </footer>
 
