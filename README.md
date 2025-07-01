@@ -24,7 +24,7 @@
 
 <div class="container">
     <h4>Virtual environment:</h4>
-        <li>\venv\Scripts\activate</li>
+        <li>.venv\scripts\activate</li>
 </div>
 <div class="container">
     <h4>DB API:</h4>
