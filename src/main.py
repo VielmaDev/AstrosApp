@@ -3,36 +3,53 @@ from flet import Page, TextField, ElevatedButton, Column, Row, Text, Container, 
 import news
 
 class myapp:
-
     def __init__(self, page: ft.Page):
         page.title = "Agenda NASA"
         page.bgcolor = Colors.BLACK26
         page.theme_mode = "dark"
         page.scroll = ft.ScrollMode.ADAPTIVE
-        
+
+        #Conexión con módulo news
+        datos= news.news_today() 
+
+        #Método selector de pestaña
+        def tab_chance(e):
+            print("Selected tab:", e.control.selected_index)
+
+            if page.navigation_bar.selected_index == 0:
+                page.remove(news_fecha)
+                page.add(news_container)
+               
+            elif page.navigation_bar.selected_index == 1:
+                page.remove(news_container)
+                page.add(news_fecha)
+
+        #Menú de la app
         page.navigation_bar = ft.CupertinoNavigationBar(
             bgcolor=ft.Colors.BLUE_600,
             inactive_color=ft.Colors.WHITE,
             active_color=ft.Colors.BLACK,
-            on_change=lambda e: print("Selected tab:", e.control.selected_index),
+            on_change = tab_chance,
             destinations=[
-                ft.NavigationBarDestination(icon=ft.Icons.NEWSPAPER, 
+                ft.NavigationBarDestination(icon=ft.Icons.NEWSPAPER,
                                             selected_icon=ft.Icons.NEWSPAPER, label="News"),
                 ft.NavigationBarDestination(icon=ft.Icons.CALENDAR_MONTH, label="Calendar"),
             ],
+            selected_index = 0,
         )
 
-        datos= news.news_today() #Identación del módulo news para la API NASA
-
-        fecha = ft.Text(f"{datos['date']}", size=16, color=ft.Colors.WHITE)
+        # Widgets de la app
+        fecha = ft.Text(f"{datos['date']}", size=16, 
+                        color=ft.Colors.WHITE,
+                        text_align=ft.TextAlign.CENTER)
         news_fecha = Row(
-                            controls=[fecha],
-                            alignment="center", # Alineación horizontal
-                        )
-
+                        controls=[fecha],
+                        alignment="center", # Alineación horizontal
+                    )
                     
-        titulo = ft.Text(f"{datos['title']}", size=26, color=ft.Colors.WHITE, 
-                         max_lines=2)
+        titulo = ft.Text(f"{datos['title']}", size=28, 
+                         color=ft.Colors.BLUE,
+                         text_align=ft.TextAlign.CENTER)
         news_titulo = Row(
                         controls=[titulo],
                         alignment="center", # Alineación horizontal
@@ -41,9 +58,8 @@ class myapp:
         imagen = ft.Image(src=f"{datos['url']}", width=380, height=380)
         news_imagen = Row(
                         controls=[imagen],
-                        spacing=2,
                         alignment="center", # Alineación horizontal
-                        vertical_alignment="center" # Alineación vertical
+                        vertical_alignment="center"  # Alineación vertical
                     )
         
         news_contenido = ft.Container(
@@ -53,23 +69,32 @@ class myapp:
                                 color=ft.Colors.WHITE, 
                             ),
                     ]),
-                padding=25)
+                padding=20)
         
-        news_autor = ft.Text(f"Autor(es): {datos['copyrights']}", size=14,
-                        color=ft.Colors.YELLOW, 
-                        max_lines=2,)
-        autor = Row(
-                        controls=[news_autor],
-                        spacing=5,
-                        alignment="center", # Alineación horizontal
-                        vertical_alignment="center" # Alineación vertical
+        autor = ft.Text(f"Copyright. {datos['copyright']}", size=14,
+                        text_align=ft.TextAlign.CENTER,
+                        color=ft.Colors.YELLOW,  
                     )
-
-
-        # Agrega el widget a la página
-        page.add(news_fecha, news_titulo, news_imagen, news_contenido)
-
-        # Actualiza la interfaz Flet
+        news_autor = Row(
+                        controls=[autor],
+                        alignment="center", # Alineación horizontal
+                    )
+        
+        #Contenedor de widgets
+        news_container = Container(
+                    content=ft.Column(
+                        controls=[
+                            news_fecha,
+                            news_titulo,
+                            news_imagen,
+                            news_contenido,
+                            news_autor
+                        ],
+                    ),padding=20 
+                ) 
+         
+        page.add(news_container)
         page.update()
 
-ft.app(target=myapp)
+if __name__ == "__main__":
+    ft.app(target = myapp)
