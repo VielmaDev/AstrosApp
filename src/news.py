@@ -7,7 +7,7 @@ def news_today():
         #fecha actual tomada del servidor
         now=date.today()
 
-        #API APOD que permite consultar la imagen del día publicada por la NASA
+        #URL de la API APOD
         URL_API="https://api.nasa.gov/planetary/apod?"
                 
         try:
