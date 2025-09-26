@@ -29,8 +29,9 @@
 </div>
 <div class="container">
     <h4>DB API:</h4>
-        <li>APOD (NASA_API)</li>
-        <li>Registro y solicitud de Api_key en https://api.nasa.gov/</li>
+        <li>Registro y solicitud para Api_key registrarse en https://api.nasa.gov/</li>
+        <li>APOD (Astronomy Picture of the Day)</li>
+        <li>NeoWs (Near Earth Object Web Service)</li>
 </div>
 
 <div class="container">
