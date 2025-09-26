@@ -1,6 +1,6 @@
 <caption>
     <div class="container" style="text-aling:center";>
-        <h1>AstroNews</h1>
+        <h1>AstrosApp</h1>
     </div>
 </caption>
 
@@ -9,7 +9,8 @@
     <img src="https://github.com/user-attachments/assets/36a3ffb3-8320-43b8-b2f8-b1cdbba06b78">
 </div>   
 <div class="container">
-    <p>Astronews es una app que proporcionará noticias publicadas por la agencia espacial NASA, extraída de la API APOD (Astronomy Picture of Day).</p>
+    <p>AstrosApp es una aplicación que proporcionará noticias publicadas por la agencia espacial NASA e información de asteróides cercanos a la Tierra, toda esta 
+        información será extraída de sus APIs (APOD y NeoWs) respectivamente.</p>
 </div>
 
 <div class="container">
@@ -28,8 +29,9 @@
 </div>
 <div class="container">
     <h4>DB API:</h4>
-        <li>APOD (NASA_API)</li>
-        <li>Registro y solicitud de Api_key en https://api.nasa.gov/</li>
+        <li>Registro y solicitud para Api_key registrarse en https://api.nasa.gov/</li>
+        <li>APOD (Astronomy Picture of the Day)</li>
+        <li>NeoWs (Near Earth Object Web Service)</li>
 </div>
 
 <div class="container">
