@@ -38,32 +38,32 @@ class myapp:
             on_change = tab_chance, # Selector de pestaña
             destinations=[
                 ft.NavigationBarDestination(icon=ft.Icons.HOME,
-                                            selected_icon=ft.Icons.HOME, label="NEWS"),
-                ft.NavigationBarDestination(icon=ft.Icons.SEARCH, label="ASTEROIDS"),
+                                            selected_icon=ft.Icons.HOME, label="News"),
+                ft.NavigationBarDestination(icon=ft.Icons.SEARCH, label="Asteroids"),
             ],
             selected_index = 0,
         )
 
-        # Widgets news         
-        titulo = ft.Text(f"{Apod['title']}", size=28, 
+        # Widgets News         
+        label = ft.Text(f"{Apod['title']}", size=25, 
                          color=ft.Colors.BLUE,
                          text_align=ft.TextAlign.CENTER)
-        apod_titulo = Row(
-                        controls=[titulo],
+        apod_label = Row(
+                        controls=[label],
                         alignment="center", # Alineación horizontal
                     )
         
-        fecha_objeto = datetime.strptime(Apod['date'], ORIGINAL_API_FORMAT) #Convierte la cadena de la API en un objeto 'datetime'.
-        fecha_formateada = fecha_objeto.strftime(API_DATE_FORMAT) # Formatea el objeto `datetime` al nuevo formato de cadena.
+        date_objeto = datetime.strptime(Apod['date'], ORIGINAL_API_FORMAT) #Convierte la cadena de la API en un objeto 'datetime'.
+        date_format = date_objeto.strftime(API_DATE_FORMAT) # Formatea el objeto `datetime` al nuevo formato de cadena.
 
-        fecha = ft.Text(
-                        fecha_formateada,
-                        size=16,
+        dates = ft.Text(
+                        date_format,
+                        size=17,
                         color=ft.Colors.WHITE,
                         text_align=ft.TextAlign.CENTER)
         
-        apod_fecha = Row(
-                        controls=[fecha],
+        apod_date = Row(
+                        controls=[dates],
                         alignment="center", # Alineación horizontal
                     )
        
@@ -73,28 +73,65 @@ class myapp:
                         alignment="center", # Alineación horizontal
                         vertical_alignment="center"  # Alineación vertical
                     )
-        apod_contenido = ft.Container(
+        apod_content = ft.Container(
                 content=ft.Column([
-                        ft.Text(f"{Apod['explanation']}",size=18,
+                        ft.Text(f"{Apod['explanation']}",size=16,
                                 color=ft.Colors.WHITE,
                                 text_align=ft.TextAlign.JUSTIFY),
                     ]),
                 padding=20)
 
-        # widget asteroids
-        titulo = ft.Text("Asteroides cercanos a la Tierra", size=20,
+        # widget Asteroids
+        label = ft.Text("Asteroides cercanos a la Tierra", size=23,
                             color=ft.Colors.BLUE, 
                             text_align=ft.TextAlign.CENTER)
-        neows_titulo = Row(
-                        controls=[titulo],
+        neows_label = Row(
+                        controls=[label],
                         alignment="center", # Alineación horizontal
                     )
+
+        count = ft.Text("Cantidad de elementos: ", size=16,
+                            color=ft.Colors.WHITE,
+                            text_align=ft.TextAlign.CENTER)
+
+        neows_count = Row(
+                        controls=[count],
+                        alignment="center", # Alineación horizontal
+        )
         
-        id = ft.Text("ID:", size=14, 
-                         color=ft.Colors.BLUE,
-                         text_align=ft.TextAlign.CENTER)
-        neows_id = Row(
-                        controls=[id],
+        table= ft.DataTable(
+            columns=[
+                ft.DataColumn(ft.Text("Id")),
+                ft.DataColumn(ft.Text("Name")),
+                ft.DataColumn(ft.Text("Magnitude")),
+                ft.DataColumn(ft.Text("Diameter")),
+                ft.DataColumn(ft.Text("Hazardous")),
+                ft.DataColumn(ft.Text("Approach date full")),
+                ft.DataColumn(ft.Text("Velocity")),
+                ft.DataColumn(ft.Text("Miss distance")),
+                ft.DataColumn(ft.Text("Orbiting body")),
+
+            ],
+            rows=[
+                ft.DataRow(
+                    cells=[
+                        ft.DataCell(ft.Text("")),
+                        ft.DataCell(ft.Text("")),
+                        ft.DataCell(ft.Text("")),
+                        ft.DataCell(ft.Text("")),
+                        ft.DataCell(ft.Text("")),
+                        ft.DataCell(ft.Text("")),
+                        ft.DataCell(ft.Text("")),
+                        ft.DataCell(ft.Text("")),
+                        ft.DataCell(ft.Text("")),
+                    ],
+                ),
+                
+            ],
+        )
+
+        neows_table= Row(
+                        controls=[table],
                         alignment="center", # Alineación horizontal
                     )
         
@@ -102,10 +139,10 @@ class myapp:
         news_container = Container(
                     content=ft.Column(
                         controls=[
-                            apod_titulo,
-                            apod_fecha,
+                            apod_label,
+                            apod_date,
                             apod_imagen,
-                            apod_contenido
+                            apod_content
                         ],
                     ),padding=20 
                 )
@@ -114,8 +151,9 @@ class myapp:
         asteroid_container = Container(
                         content=ft.Column(
                                 controls=[
-                                    neows_titulo,
-                                    neows_id,
+                                    neows_label,
+                                    neows_count,
+                                    neows_table,
                             ],
                     ),padding=20 
                 )
